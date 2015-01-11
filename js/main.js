@@ -17,6 +17,12 @@ $(function () {
         return (h.charAt(0) == "#") ? h.substring(1, 7) : h
     }
 
+    function searchHex(hex) {
+        var regexp = /[0-9a-f]{6}/;
+        return hex.match(regexp);
+
+    }
+
     var inputHex = $('#hexIn'),
         outputRGB = $('#rgbOut'),
         hex = '',
@@ -25,10 +31,14 @@ $(function () {
 
     $("button").on({
         click: function() {
-            hex = inputHex.val();
-            rgb = 'rgb('+hexToR(hex)+','+hexToG(hex)+','+hexToB(hex)+')';
-            $(outputRGB).val(rgb);
-            $("body").css("background-color", '#' + hex);
+            hex = inputHex.val().slice(0,6);
+            if(searchHex(hex)) {
+                rgb = 'rgb('+hexToR(hex)+','+hexToG(hex)+','+hexToB(hex)+')';
+                $(outputRGB).val(rgb);
+                $("body").css("background-color", '#' + hex);
+                } else {
+                alert('ERROR!');
+            }
         }
     });
 });
