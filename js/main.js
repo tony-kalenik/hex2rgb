@@ -28,6 +28,9 @@ $(function () {
         hex = '',
         rgb = '';
 
+    $(window).on('load resize', function() {
+        $(".container").css("padding-top", window.innerHeight*0.4);
+    });
 
     $("button").on({
         click: function() {
@@ -38,6 +41,7 @@ $(function () {
                 $("body").css("background-color", '#' + hex);
                 } else {
                 alert('ERROR!');
+                $(inputHex).val('000000');
             }
         }
     });
